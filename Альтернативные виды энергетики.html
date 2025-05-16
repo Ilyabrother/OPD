@@ -3,34 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet", href="style.css">
     <title>Альтернативные виды энергетики</title>
-    <script src="script.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: #f0f0f0;
+        }
+
+        .bg1 {
+            background: url(1background.jpg) no-repeat center, #555555;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title1 {
+            font-size: 75px;
+            color: black;
+            animation: fadeIn 1.5s ease-in-out;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 25px;
+            text-align: center;
+            margin-top: 20px;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        .alter_energ_type {
+            font-size: 40px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #clickable-text {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Анимация появления popup */
+        @keyframes popupFade {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        #popup {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #popup.show {
+            display: flex;
+            animation: fadeInBg 0.3s ease forwards;
+        }
+
+        @keyframes fadeInBg {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .popup-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            position: relative;
+            animation: popupFade 0.3s ease;
+        }
+
+        #close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <div class="bg1">
-        <div class="title1">
-           Альтернативная энергетика
-       </div>
-       <div class="subtitle">
-           - перспективные способы получения, хранения, передачи и использования энергии из источников как правило, возобновляемых.
-       </div>
-    </div>
-    
-    <div class="page1">
-        <div class="alter_energ_type">
-            Виды альтернативной энергетики
-        </div>
 
-        <div class="sunenerg" id="clickable-text">
-            Солнечная энергетика
-        </div>
-        <div id="popup">
+    <div class="bg1">
+        <div class="title1">Альтернативная энергетика</div>
+        <div class="subtitle">– перспективные способы получения, хранения, передачи и использования энергии из возобновляемых источников.</div>
+    </div>
+
+    <div class="alter_energ_type">Виды альтернативной энергетики</div>
+
+    <div id="clickable-text">Солнечная энергетика</div>
+
+    <!-- Popup окно -->
+    <div id="popup">
         <div class="popup-content">
-            <h2>Заголовок окна</h2>
-            <p>Этот текст появляется при клике. Можешь написать здесь что угодно!</p>
+            <span id="close-btn">&times;</span>
+            <h2>Солнечная энергетика</h2>
+            <p>Это один из самых перспективных и экологически чистых видов энергии, использующий солнечное излучение.</p>
         </div>
     </div>
+
+    <script>
+        const clickableText = document.getElementById("clickable-text");
+        const popup = document.getElementById("popup");
+        const closeBtn = document.getElementById("close-btn");
+
+        clickableText.addEventListener("click", () => {
+            popup.classList.add("show");
+        });
+
+        closeBtn.addEventListener("click", () => {
+            popup.classList.remove("show");
+        });
+
+        popup.addEventListener("click", (event) => {
+            if (event.target === popup) {
+                popup.classList.remove("show");
+            }
+        });
+    </script>
+
 </body>
-<script src="script.js"></script>
 </html>
