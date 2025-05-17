@@ -1,16 +1,17 @@
- // Получаем элементы DOM
-const clickableText = document.getElementById("clickable-text");
-const popup = document.getElementById("popup");
-const closeBtn = document.getElementById("close-btn");
+ const clickableText = document.getElementById("clickable-text");
+        const popup = document.getElementById("popup");
+        const closeBtn = document.getElementById("close-btn");
 
-// Открываем окно при клике на текст
-clickableText.addEventListener("click", function() {
-    popup.style.display = "flex";  // Показываем окно
-});
+        clickableText.addEventListener("click", () => {
+            popup.classList.add("show");
+        });
 
-// Закрываем окно при клике вне его области
-popup.addEventListener("click", function(event) {
-if (event.target === popup) {
-    popup.style.display = "none";
-    }
-});
+        closeBtn.addEventListener("click", () => {
+            popup.classList.remove("show");
+        });
+
+        popup.addEventListener("click", (event) => {
+            if (event.target === popup) {
+                popup.classList.remove("show");
+            }
+        });
